@@ -16,9 +16,11 @@ class TrackCampaign implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    protected $params;
+
+    public function __construct($params)
     {
-        //
+        $this->params = $params;
     }
 
     /**
@@ -26,6 +28,6 @@ class TrackCampaign implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+
     }
 }
