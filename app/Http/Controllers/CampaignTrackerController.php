@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Jobs\TrackCampaign;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 
 class CampaignTrackerController extends Controller
 {
@@ -12,13 +15,13 @@ class CampaignTrackerController extends Controller
     {
         $params = [
             'date' => date('Y-m-d'),
-            'country_code' => $request->query('country_code') ?? 'bd',
             'campaign_id' => $request->query('cid'),
             'creative_id' => $request->query('crid'),
             'browser_id' => $request->query('bid'),
             'device_id' => $request->query('did'),
-            'count' => $request->query('count'),
+            'client_ip' => $request->query('cip'),
         ];
+
         try {
             dispatch(new TrackCampaign($params));
         } catch (\Throwable $th) {
