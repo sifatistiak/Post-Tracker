@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\CampaignTracker;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,7 +31,6 @@ class TrackCampaign implements ShouldQueue
      */
     public function handle(): void
     {
-
         // Fetch country data from IP
         $country_code = Cache::remember($this->params['client_ip'], 60 * 24, function () {
             $response = Http::get('https://ipwhois.app/json/' . $this->params['client_ip']);
@@ -55,7 +53,7 @@ class TrackCampaign implements ShouldQueue
             $redis->set(
                 'count:' . $key,
                 json_encode([
-                    'key' => $key,
+                    'data' => $key,
                     'count' => 1
                 ])
             );
@@ -64,7 +62,7 @@ class TrackCampaign implements ShouldQueue
             $redis->set(
                 'count:' . $key,
                 json_encode([
-                    'key' => $key,
+                    'data' => $key,
                     'count' => $count
                 ])
             );
