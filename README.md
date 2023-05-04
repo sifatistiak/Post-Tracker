@@ -13,7 +13,7 @@
     4. Create a .env file 
         4.1 Copy the .env.example and replace your credentials accordingly
     5. Generate an application key
-    6. Migrate the database
+    6. Migrate the database (Database needs to be created before that and must be added in .env)
     7. Start the server (Keep it running on background)
     8. Start the queue
 
