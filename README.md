@@ -2,7 +2,7 @@
 
 ## Pre-Requisite
 * PHP 8.1
-* MySQL 
+* MySQL (Database need to be set up in advance)
 * Redis
 
 ## Installation
@@ -39,3 +39,14 @@ This will start the server on http://localhost:8000 by default. You can access t
 
 
 #### Note: The homepage / welcome page itself contains the tracker. ####
+
+
+After browsing the page, the tracker collects the data and send it to backend. The data is then collected into Redis (through queue) and to aggregate those data from Redis to MySQL run this command - 
+
+
+```
+php artisan aggregate:campaign
+``` 
+
+After running this command data will be transferred to DB and associated data from Redis would be cleared out. 
+
