@@ -14,7 +14,8 @@
         4.1 Copy the .env.example and replace your credentials accordingly
     5. Generate an application key
     6. Migrate the database
-    7. Start the server
+    7. Start the server (Keep it running on background)
+    8. Start the queue
 
 ```bash
   git clone https://github.com/sifatistiak/Post-Tracker.git
@@ -31,6 +32,7 @@
 
   php artisan serve
 
+  php artisan queue:listen
 
 ```
 
